@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viva La Vida - Home</title>
+    <style>
+        .menu-button {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #333;
+            cursor: pointer;
+            z-index: 999; /*at top in style */
+        }
+
+        /* Side panel  */
+        .side-panel {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #333;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            color: #fff;
+            z-index: 998; /at top than other side ele/
+        }
+
+        .side-panel a {
+            padding: 15px 15px 15px 32px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .side-panel a:hover {
+            color: #ff4400de;
+        }
+
+        .side-panel .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            color: #fff;
+            cursor: pointer;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .menu1-button {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 999; /* top */
+        }
+        section {
+            padding: 20px;
+            text-align: center;
+        }  
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .order-button {
+            background-color: #ff4500;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Viva La Vida</h1>
+        <a href="#" class="menu1-button" onclick="toggleSidePanel()">&#9776;</a>
+    </header>
+    <div class="side-panel" id="sidePanel">
+        <a href="#" class="close-btn" onclick="toggleSidePanel()">&times;</a>
+        <a href="#">Instruments</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+    </div>
+    <section>
+        <h2>Welcome to Viva La Vida</h2>
+        <p>Explore a world of musical instruments!</p>
+
+        <!-- Corrected placeholder images -->
+        <img src="data:image/jpeg;base64,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" alt="Instrument Image 1">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvVmUOHk_8zZtSxdcyjxbm91wboG5X-KBCjg&usqp=CAU" alt="Instrument Image 2">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYsFhzn7v17gRZdK5u6M0WMrIAf-qMxOcqyg&usqp=CAU" alt="Instrument Image 3">
+
+        <p>Find your melody with us!</p>
+        <!-- Link to musicals.html page -->
+        <a href="musicals.html" class="order-button">Explore Instruments</a>
+    </section>
+    <script>
+        function toggleSidePanel() {
+            var sidePanel = document.getElementById('sidePanel');
+            if (sidePanel.style.width === '250px') {
+                sidePanel.style.width = '0';
+            } else {
+                sidePanel.style.width = '250px';
+            }
+        }
+    </script>
+    <footer>
+        <p>&copy; 2024 Viva La Vida. All rights reserved by Gayatri Maskar.</p>
+    </footer>
+</body>
+
+</html>
